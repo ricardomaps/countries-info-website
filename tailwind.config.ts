@@ -8,9 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      textColor: {
+        skin: {
+          base: "var(--color-text-base)",
+          muted: "var(--color-text-muted)",
+        },
+      },
+      backgroundColor: {
+        skin: {
+          card: "var(--color-background-card)",
+          fill: "var(--color-fill)",
+        },
       },
     },
   },
