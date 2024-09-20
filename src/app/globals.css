@@ -9,7 +9,8 @@
     --color-fill: hsl(0, 0%, 98%);
     --color-background-card: hsl(0, 0%, 100%);
   }
-  .dark-theme {
+
+  .dark {
     --color-background-card: hsl(209, 23%, 22%);
     --color-fill: hsl(207, 26%, 17%);
     --color-text-base: hsl(0, 0%, 100%);

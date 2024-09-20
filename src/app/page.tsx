@@ -13,7 +13,7 @@ async function getCountries(params) {
 export default async function Home({ searchParams }) {
   const countries = await getCountries(searchParams);
   return (
-    <div className="bg-skin-fill px-20">
+    <div className="px-20">
       <div className="flex justify-between py-12">
         <Search/>
         <Filter/>

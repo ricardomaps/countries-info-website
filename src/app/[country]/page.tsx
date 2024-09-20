@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import BackButton from "@/components/BackButton.tsx";
 
 export async function generateStaticParams() {
@@ -28,15 +29,15 @@ export default async function CountryDetail({ params }) {
     const bordered = country.bordered.map(b => b.name);
 
     return (
-      <div className="w-screen h-screen bg-skin-fill px-16">
+      <div className="px-28">
         <div className="py-12">
           <BackButton/>
         </div>
         <div className="flex gap-16">
-          <img alt={`${country.name}'s flag`} src={country.flags.png} className="block w-[32rem] h-[20rem]"/>
-          <div>
-            <h2 className="text-lg font-bold text-skin-base">{country.name}</h2>
-            <div className="flex gap-8 align-center">
+          <Image alt={`${country.name}'s flag`} src={country.flags.svg} width={500} height={400} className="block w-[32rem] h-[20rem]"/>
+          <div className="h-full flex flex-col justify-between">
+            <h2 className="text-3xl font-bold text-skin-base mb-4">{country.name}</h2>
+            <div className="flex gap-24 mb-10">
               <div>
                 <p className="text-skin-base">Native Name: <span className="text-skin-muted"> {nativeName} </span> </p>
                 <p className="text-skin-base">Population: <span className="text-skin-muted"> {country.population} </span> </p>
@@ -50,12 +51,14 @@ export default async function CountryDetail({ params }) {
                 <p className="text-skin-base">Languages:<span className="text-skin-muted"> {languages} </span></p>
               </div>
             </div>
+            <div>
             {bordered.length > 0 &&
               <p className="text-skin-base">
               Border Countries:
-              {bordered.map(border => 
-                <Link href={border} className="bg-skin-card text-skin-muted inline-block px-6 py-1 first:ml-4 mr-3 rounded-sm shadow-md">{border}</Link>)}
+              {bordered.map((border, index) => 
+                <Link href={border} key={index} className="bg-skin-card text-skin-muted inline-block px-6 py-1 first:ml-4 mr-3 mb-3 rounded-sm shadow-md">{border}</Link>)}
               </p>}
+            </div>
           </div>
         </div>
       </div>
