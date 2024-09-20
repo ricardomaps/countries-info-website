@@ -1,22 +1,25 @@
 import Image from "next/image";
-import CountryCard from "../components/CountryCard.tsx";
+import CountryCard from "@/components/CountryCard.tsx";
+import Search from "@/components/Search.tsx";
+import Filter from "@/components/Filter.tsx";
 
-async function getCountries() {
-  const res = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,population,region,flags");
+async function getCountries(params) {
+  const { name = "", region = "" } = params;
+  const res = await fetch(`http://localhost:8000/countries?name_like=${name}&region_like=${region}`);
   const data = await res.json();
   return data;
 }
 
-      // <div className="flex justify-between mb-20">
-      //   <input>
-      //   <select>
-      // </div>
-
-export default async function Home() {
-  const countries = await getCountries();
+export default async function Home({ searchParams }) {
+  const countries = await getCountries(searchParams);
   return (
-    <div className="bg-skin-fill ">
-      <div className="px-20 grid grid-cols-4 gap-20 auto-rows-fr">
+    <div className="bg-skin-fill px-20">
+      <div className="flex justify-between py-12">
+        <Search/>
+        <Filter/>
+      </div>
+
+      <div className="grid grid-cols-4 gap-20 auto-rows-fr pb-20">
         {countries.map((country, key) => (
           <div key={key}>
             <CountryCard {...country}/>
